@@ -4,7 +4,7 @@ package com.ankama.dofus.server.game;
 
 message ReportRequest {
 	int64 actor_id = 1;
-	repeated .ReportRequest.Category categories = 2;
+	repeated Category categories = 2;
 	string description = 3;
 	enum Category {
 		CHEATING = 0;
@@ -21,7 +21,7 @@ message ReportRequest {
 
 message ReportResponse {
 	bool success = 1;
-	.ReportResponse.Error error = 2;
+	Error error = 2;
 	enum Error {
 		UNKNOWN = 0;
 		SUBSCRIPTION_REQUIRED = 1;
