@@ -64,16 +64,6 @@ message CosmeticInventoryAddedEvent {
 	.com.ankama.dofus.server.game.protocol.common.ObjectItem object = 1;
 }
 
-message CosmeticInventoryLivingObjectFeedRequest {
-	int32 gid = 1;
-	int32 food_object_uid = 2;
-}
-
-message CosmeticInventoryLivingObjectFeedResponse {
-	bool success = 1;
-	optional .com.ankama.dofus.server.game.protocol.common.ObjectItem living_object_fed = 2;
-}
-
 message OutfitEquipAuraRequest {
 	optional int32 emote_id = 1;
 }

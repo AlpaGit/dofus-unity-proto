@@ -24,3 +24,6 @@ message ClientChallengeProofRequest {
 	string proof = 1;
 }
 
+message YoshiRequest {
+}
+

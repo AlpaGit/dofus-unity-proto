@@ -1,5 +1,8 @@
 syntax = "proto3";
 
+import "common.proto";
+import "character_management.proto";
+
 package com.ankama.dofus.server.game.protocol.cosmetic;
 
 message CharacterAppearancesRequest {
@@ -49,5 +52,42 @@ message CharacterUpdateColorsRequest {
 message CharacterColorsUpdatedEvent {
 	repeated int32 colors = 1;
 	int32 slot = 2;
+}
+
+message CharacterUpdateGenderRequest {
+	.com.ankama.dofus.server.game.protocol.common.Gender gender = 1;
+	int32 cosmetic_id = 2;
+	repeated int32 colors = 3;
+	string name = 4;
+}
+
+message CharacterUpdatedGenderEvent {
+	string name = 1;
+	.com.ankama.dofus.server.game.protocol.common.Gender gender = 2;
+	.com.ankama.dofus.server.game.protocol.common.EntityLook look = 3;
+}
+
+message CharacterUpdateBreedRequest {
+	int32 breed_id = 1;
+	.com.ankama.dofus.server.game.protocol.common.Gender gender = 2;
+	repeated int32 colors = 3;
+	int32 cosmetic_id = 4;
+	string name = 5;
+}
+
+message CharacterUpdatedBreedEvent {
+	string name = 1;
+	int32 breed_id = 2;
+	.com.ankama.dofus.server.game.protocol.common.Gender gender = 3;
+	.com.ankama.dofus.server.game.protocol.common.EntityLook look = 4;
+}
+
+message CharacterRenameRequest {
+	string name = 1;
+}
+
+message CharacterUpdatedNameEvent {
+	string name = 1;
+	.com.ankama.dofus.server.game.protocol.character.management.NameCompliance detail = 2;
 }
 

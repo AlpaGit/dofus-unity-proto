@@ -4,6 +4,21 @@ import "common.proto";
 
 package com.ankama.dofus.server.game.protocol.character.management;
 
+enum NameCompliance {
+	NAME_OK = 0;
+	NAME_ERROR_SERVICE_UNAVAILABLE = 1;
+	NAME_ERROR_ALREADY_EXISTS = 2;
+	NAME_ERROR_BAD_ALPHABET = 3;
+	NAME_ERROR_BAD_LENGTH = 4;
+	NAME_ERROR_BAD_CHAR = 5;
+	NAME_ERROR_INVALID_DASH_POSITION = 6;
+	NAME_ERROR_NAME_WITH_BAD_CASE = 7;
+	NAME_ERROR_TOO_MANY_CONSECUTIVE_IDENTICAL = 8;
+	NAME_ERROR_TOO_MANY_SPECIAL = 9;
+	NAME_ERROR_FORBIDDEN = 10;
+	NAME_ERROR_RESERVED = 11;
+}
+
 message PrepareCharacterDeletionRequest {
 	int64 character_id = 1;
 }
@@ -58,7 +73,7 @@ message CanCharacterBeCreatedResultEvent {
 
 message CharacterCreationResultEvent {
 	.com.ankama.dofus.server.game.protocol.character.management.CharacterCreationResultEvent.CharacterCreationResult result = 1;
-	.com.ankama.dofus.server.game.protocol.character.management.CharacterCreationResultEvent.NameCompliance reason = 2;
+	.com.ankama.dofus.server.game.protocol.character.management.NameCompliance reason = 2;
 	enum CharacterCreationResult {
 		CREATE_OK = 0;
 		CREATE_ERROR_NO_REASON = 1;
@@ -66,21 +81,6 @@ message CharacterCreationResultEvent {
 		CREATE_ERROR_TOO_MANY_CHARACTERS = 3;
 		CREATE_ERROR_NOT_ALLOWED = 4;
 		CREATE_ERROR_NEW_PLAYER_NOT_ALLOWED = 5;
-	}
-
-	enum NameCompliance {
-		NAME_OK = 0;
-		NAME_ERROR_SERVICE_UNAVAILABLE = 1;
-		NAME_ERROR_ALREADY_EXISTS = 2;
-		NAME_ERROR_BAD_ALPHABET = 3;
-		NAME_ERROR_BAD_LENGTH = 4;
-		NAME_ERROR_BAD_CHAR = 5;
-		NAME_ERROR_INVALID_DASH_POSITION = 6;
-		NAME_ERROR_NAME_WITH_BAD_CASE = 7;
-		NAME_ERROR_TOO_MANY_CONSECUTIVE_IDENTICAL = 8;
-		NAME_ERROR_TOO_MANY_SPECIAL = 9;
-		NAME_ERROR_FORBIDDEN = 10;
-		NAME_ERROR_RESERVED = 11;
 	}
 
 }
@@ -151,13 +151,5 @@ message CharacterListErrorEvent {
 
 message CharacterCapabilitiesEvent {
 	int32 guild_emblem_symbol_category = 1;
-}
-
-message CharacterChangeBreedRequest {
-	int32 breed_id = 1;
-	.com.ankama.dofus.server.game.protocol.common.Gender gender = 2;
-	repeated int32 colors = 3;
-	int32 cosmetic_id = 4;
-	int32 object_id = 5;
 }
 
