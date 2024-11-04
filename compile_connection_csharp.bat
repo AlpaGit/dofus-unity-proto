@@ -3,17 +3,15 @@ setlocal enabledelayedexpansion
 
 :: Set the directory paths
 set "includesDir=connection"
-set "outputDir=./src/connection"
+set "outputDir=./src_csharp/connection"
 
-mkdir "src/connection"
+mkdir "src_csharp/connection"
 
 :: Check if the includes directory exists
 if not exist "%includesDir%" (
     echo The "%includesDir%" directory does not exist.
     exit /b 1
 )
-
-mkdir "src/connection"
 
 :: Loop through all files in the includes directory
 for %%F in ("%includesDir%\*") do (

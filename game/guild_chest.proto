@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+option go_package = "protocol/game";
 package com.ankama.dofus.server.game.protocol.guild.chest;
 
 message GuildChestTabSelectRequest {

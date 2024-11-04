@@ -3,6 +3,7 @@ syntax = "proto3";
 import "common.proto";
 import "character_management.proto";
 
+option go_package = "protocol/game";
 package com.ankama.dofus.server.game.protocol.cosmetic;
 
 message CharacterAppearancesRequest {
