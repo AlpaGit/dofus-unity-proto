@@ -106,7 +106,6 @@ message CharacterSelectionEvent {
 
 	message Success {
 		.com.ankama.dofus.server.game.protocol.common.Character character = 1;
-		bool collect_stats = 2;
 	}
 
 }

@@ -35,6 +35,44 @@ message ColorPalette {
 	repeated int32 colors = 1;
 }
 
+message CharacterFillSlotFaceRequest {
+	int32 face = 1;
+}
+
+message CharacterFillSlotFaceResponse {
+	oneof Result {
+		.com.ankama.dofus.server.game.protocol.cosmetic.CharacterFillSlotFaceResponse.Success success = 1;
+		.com.ankama.dofus.server.game.protocol.cosmetic.CharacterFillSlotFaceResponse.Error error = 2;
+	}
+	message Success {
+		int32 faceId = 1;
+		int32 position = 2;
+	}
+
+	message Error {
+	}
+
+}
+
+message CharacterFillSlotColorsRequest {
+	repeated int32 colors = 1;
+}
+
+message CharacterFillSlotColorsResponse {
+	oneof Result {
+		.com.ankama.dofus.server.game.protocol.cosmetic.CharacterFillSlotColorsResponse.Success success = 1;
+		.com.ankama.dofus.server.game.protocol.cosmetic.CharacterFillSlotColorsResponse.Error error = 2;
+	}
+	message Success {
+		repeated int32 colors = 1;
+		int32 position = 2;
+	}
+
+	message Error {
+	}
+
+}
+
 message CharacterUpdateFaceRequest {
 	int32 face_id = 1;
 	int32 slot = 2;

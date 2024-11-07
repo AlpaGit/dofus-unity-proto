@@ -3,9 +3,7 @@ setlocal enabledelayedexpansion
 
 :: Set the directory paths
 set "includesDir=game"
-set "outputDir=src_csharp/game"
-
-mkdir "src_csharp/game"
+set "outputDir=src_golang/game"
 
 :: Check if the includes directory exists
 if not exist "%includesDir%" (
@@ -21,7 +19,7 @@ for %%F in ("%includesDir%\*") do (
     :: Run the protoc command for each file
     echo Processing !fileName!...
     ::protoc -I. --proto_path=%includesDir%/ --csharp_out=./%outputDir% %includesDir%/!fileName!
-    protogen --proto_path=%includesDir% +listset=yes +names=auto +repeatedaslist=yes --mapping=game_mappings.json --csharp_out=%outputDir% +oneof=enum !fileName!
+    protoc -I./game -I./game/google/protobuf --go_out=./src_golang !fileName! 
 
     :: Check if the command was successful
     if !errorlevel! equ 0 (

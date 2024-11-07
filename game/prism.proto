@@ -26,7 +26,7 @@ message PrismAddOrUpdateEvent {
 }
 
 message PrismRemoveEvent {
-	.com.ankama.dofus.server.game.protocol.common.PrismLocalizedInformation prism_localized_information = 1;
+	int32 subarea_id = 1;
 }
 
 message PrismAttackedEvent {

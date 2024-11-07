@@ -32,6 +32,44 @@ message FightEndEvent {
 }
 
 message FightStatisticsEvent {
+	.com.ankama.dofus.server.game.protocol.fight.BaseStatistics base = 1;
+	repeated .com.ankama.dofus.server.game.protocol.fight.FightStatisticsEvent.DetailedStatisticsByFighterEntry detailed_statistics_by_fighter = 2;
+	message DetailedStatisticsByFighterEntry {
+		int64 key = 1;
+		.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics value = 2;
+	}
+
+}
+
+message FighterIdentity {
+	int64 id = 1;
+	.com.ankama.dofus.server.game.protocol.common.Team team = 2;
+	oneof identity {
+		.com.ankama.dofus.server.game.protocol.fight.FighterIdentity.Player player = 3;
+		.com.ankama.dofus.server.game.protocol.fight.FighterIdentity.Monster monster = 4;
+		.com.ankama.dofus.server.game.protocol.fight.FighterIdentity.Companion companion = 5;
+		.com.ankama.dofus.server.game.protocol.fight.FighterIdentity.Summon summon = 6;
+	}
+	message Player {
+	}
+
+	message Monster {
+		int32 monster_id = 1;
+	}
+
+	message Companion {
+		int32 companion_id = 1;
+		.com.ankama.dofus.server.game.protocol.fight.FighterIdentity master = 2;
+	}
+
+	message Summon {
+		int32 monster_id = 1;
+		.com.ankama.dofus.server.game.protocol.fight.FighterIdentity summoner = 2;
+	}
+
+}
+
+message BaseStatistics {
 	int32 damage_done = 1;
 	int32 damage_taken = 2;
 	int32 blocked_damage = 3;
@@ -39,6 +77,83 @@ message FightStatisticsEvent {
 	int32 heal_done = 5;
 	int32 heal_taken = 6;
 	int32 kill_count = 7;
+}
+
+message DetailedStatistics {
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.DamageDone damage_done = 1;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.DamageTaken damage_taken = 2;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.HealDone heal_done = 3;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.HealTaken heal_taken = 4;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.ShieldDone shield_done = 5;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.ShieldTaken shield_taken = 6;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.Point action_point = 7;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.Point movement_point = 8;
+	.com.ankama.dofus.server.game.protocol.fight.DetailedStatistics.Kill kill = 9;
+	.com.ankama.dofus.server.game.protocol.fight.FighterIdentity identity = 10;
+	message DamageDone {
+		int32 total = 1;
+		int32 by_poison = 2;
+		int32 by_push = 3;
+		int32 by_object = 4;
+		int32 by_summon = 5;
+		int32 on_shield = 6;
+		float by_action_point = 7;
+		float by_turn = 8;
+		int32 erosion = 9;
+	}
+
+	message DamageTaken {
+		int32 total = 1;
+		int32 by_poison = 2;
+		int32 by_push = 3;
+		int32 by_object = 4;
+		int32 by_summon = 5;
+		int32 on_shield = 6;
+		float by_turn = 7;
+		int32 erosion = 8;
+	}
+
+	message HealDone {
+		int32 total = 1;
+		int32 by_summon = 2;
+		float by_action_point = 3;
+		float by_turn = 4;
+	}
+
+	message HealTaken {
+		int32 total = 1;
+		int32 by_summon = 2;
+		float by_turn = 3;
+	}
+
+	message ShieldDone {
+		int32 total = 1;
+		int32 by_summon = 2;
+		float by_turn = 3;
+	}
+
+	message ShieldTaken {
+		int32 total = 1;
+		int32 by_summon = 2;
+		float by_turn = 3;
+	}
+
+	message Point {
+		int32 dodged = 1;
+		int32 not_dodged = 2;
+		int32 removed = 3;
+		float dodged_by_turn = 4;
+		float not_dodged_by_turn = 5;
+		float removed_by_turn = 6;
+		float spent_by_turn = 7;
+	}
+
+	message Kill {
+		int32 total = 1;
+		int32 non_summon = 2;
+		int32 summon = 3;
+	}
+
 }
 
 message FightNewRoundEvent {

@@ -25,10 +25,6 @@ message FightChoiceSelectionEvent {
 	repeated .com.ankama.dofus.server.game.protocol.choice.Choice choices = 3;
 }
 
-message ChoiceSelectedEvent {
-	int32 position = 1;
-}
-
 message ChoiceSelectedRequest {
 	int32 position = 1;
 }
