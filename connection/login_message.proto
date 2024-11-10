@@ -1,6 +1,6 @@
 syntax = "proto3";
-option go_package = "protocol/connection";
 
+option go_package = "protocol/connection";
 package com.ankama.dofus.server.connection.protocol;
 
 message LoginMessage {
