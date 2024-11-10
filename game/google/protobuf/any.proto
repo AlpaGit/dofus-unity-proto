@@ -1,6 +1,6 @@
 syntax = "proto3";
-option go_package = "protocol/game";
 
+option go_package = "protocol/connection";
 package google.protobuf;
 
 message Any {
